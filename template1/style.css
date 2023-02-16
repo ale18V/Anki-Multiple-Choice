@@ -6,7 +6,7 @@
     background-color: white;
 }
 
-.container {
+.multiple-choice-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	row-gap:15px;
@@ -15,11 +15,20 @@
 
 }
 
-.myButton {
+.multiple-choice-button {
 	background-color: gray;
 	padding:2px;
 	border-radius: 15px;
  	-webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
+	cursor: pointer;
+}
+
+.wrong {
+	background-color:red;
+}
+
+.right {
+	background-color:green;
 }
