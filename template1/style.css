@@ -1,11 +1,3 @@
-.card {
-    font-family: arial;
-    font-size: 20px;
-    text-align: center;
-    color: black;
-    background-color: white;
-}
-
 .multiple-choice-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
@@ -25,10 +17,10 @@
 	cursor: pointer;
 }
 
-.wrong {
+.multiple-choice-wrong {
 	background-color:red;
 }
 
-.right {
+.multiple-choice-right {
 	background-color:green;
 }
