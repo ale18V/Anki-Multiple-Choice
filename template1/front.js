@@ -35,7 +35,7 @@ function init() {
             button.addEventListener("touchstart", flipCard);
 
         if (i !== correctButtonIndex)
-            button.innerHTML = getChoice(getRandomInt(0, choices.length - i));
+            button.innerHTML = getChoice(getRandomInt(0, choices.length - 1));
 
         button.setAttribute("Index", i);
         persistButton(button);
