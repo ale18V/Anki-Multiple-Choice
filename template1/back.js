@@ -29,9 +29,9 @@ function init() {
     let choosenButtonIndex = getChoosenButtonIndex();
     if (correctButtonIndex !== null) {
         if (choosenButtonIndex !== -1 && choosenButtonIndex !== correctButtonIndex) {
-            styleButton(buttons[choosenButtonIndex], "multiple-choice-correct"); // wrong must be a css class
+            styleButton(buttons[choosenButtonIndex], "multiple-choice-wrong"); // wrong must be a css class
         }
-        styleButton(buttons[correctButtonIndex], "multiple-choice-wrong"); // right must be a css class
+        styleButton(buttons[correctButtonIndex], "multiple-choice-correct"); // right must be a css class
     }
 
 }
