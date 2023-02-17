@@ -30,13 +30,14 @@
 	border: 2px solid blue;
 }
 
-button.multiple-choice-hidden {
+.multiple-choice-hidden {
 	/* Override anki default style */
-	margin: 0px;
-	padding: 0px;
-	border: none;
-	font: inherit;
+	all: unset !important;
+
+	/* Only for Anki Mobile */
+	-webkit-tap-highlight-color: transparent !important;
+
 	/* Hide it */
-	visibility: hidden;
+	visibility: hidden !important;
 
 }
