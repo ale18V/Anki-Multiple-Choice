@@ -1,26 +1,38 @@
 .multiple-choice-container {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
-	row-gap:15px;
-	column-gap:10px;
-	margin-top:10px;
-
+	row-gap: 15px;
+	column-gap: 10px;
+	margin-top: 10px;
 }
 
 .multiple-choice-button {
 	background-color: gray;
-	padding:2px;
+	padding: 2px;
 	border-radius: 15px;
- 	-webkit-touch-callout: none;
-    -webkit-user-select: none;
-    user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
 	cursor: pointer;
+	transition: transfrom .3s;
 }
 
+/* Style applied to the clicked button if it contains the wrong answer */
 .multiple-choice-wrong {
-	background-color:red;
+	background-color: red;
 }
 
+/* Style applied to the button containing the correct answer */
 .multiple-choice-correct {
-	background-color:green;
+	background: green;
+}
+
+/* Additional CSS for animating buttons */
+/* You can remove this */
+.multiple-choice-button:not(.mobile .multiple-choice-button):hover {
+	transform: scale(1.02);
+}
+
+.multiple-choice-button:not(.mobile .multiple-choice-button):active {
+	transform: scale(0.99);
 }
