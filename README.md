@@ -5,7 +5,7 @@ This project is a mix of html, css and javascript that you can add to whichever 
 It randomizes the choices every time you review your card in order to prevent you from memorizing the position of the correct choice.
 
 ## How to use
-### How to setup the note type
+### Setup the note type
 First choose the template you want to use.
 You can find more about the difference between the two templates in the templates paragraph.
 Once you have choosen a template you'll have to do the following:
@@ -19,7 +19,7 @@ Then, at the end of the card, add a script element (write `<script> </script>`) 
 1. Add the content of style.css to the style section.
 1. Save the note type.
 
-### How to create a card
+### Create a card
 The text inside the "Choices" field has to follow a specific format: each choice must be on a separate line[^1] and the one in the first line will be considered the correct one.
 [^1]: More specifically they should be `<br>` separated. By default Anki adds the `<br>` tag when you add a new line, but things might go wrong if you, for example, paste text from a webpage. You can check whether the choices follow the right format using Anki's HTML inspector.
 
