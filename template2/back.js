@@ -5,7 +5,6 @@ if (void 0 === window.Persistence) { var e = "github.com/SimonLammer/anki-persis
 
 var Debug = document.getElementById("multiple-choice-debug");
 function init() {
-
     let buttons = document.getElementsByClassName("multiple-choice-button");
 
     // Check for possible errors
@@ -31,19 +30,18 @@ function init() {
     if (correctButtonIndex !== -1) {
 
         if (choosenButtonIndex !== -1 && choosenButtonIndex !== correctButtonIndex) {
-            styleButton(buttons[choosenButtonIndex], "multiple-choice-wrong"); // wrong must be a css class
+            styleButton(buttons[choosenButtonIndex], "multiple-choice-wrong");
         }
-        styleButton(buttons[correctButtonIndex], "multiple-choice-correct"); // right must be a css class
+        styleButton(buttons[correctButtonIndex], "multiple-choice-correct");
     }
-
 }
 init();
 Persistence.clear();
 
-
-
 //  UTILITY FUNCTIONS
 function log(text) { if (Debug !== null && Debug != undefined) Debug.innerHTML += text + "<br>"; }
+
+function styleButton(button, style) { button.classList.add(style); }
 
 function getCorrectButtonIndex() {
     let correct = Persistence.getItem("correctButton");
@@ -60,8 +58,3 @@ function getChoosenButtonIndex() {
         choosen = -1;
     return choosen;
 }
-
-function styleButton(button, style) {
-    button.classList.add(style);
-}
-

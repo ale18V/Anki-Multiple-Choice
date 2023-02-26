@@ -4,56 +4,65 @@ if (void 0 === window.Persistence) { var e = "github.com/SimonLammer/anki-persis
 
 
 var isMobile = (document.getElementsByClassName('mobile').length !== 0);
-var isWindows = (document.getElementsByClassName('win').length !== 0);
+var isDesktop = !isMobile;
 var Debug = document.getElementById("multiple-choice-debug");
-function init() {
 
+function init() {
     let choices = parseChoices();
     let buttons = document.getElementsByClassName("multiple-choice-button")
+    
     // Check for possible errors
-    if (!Persistence.isAvailable()) {
+    if (!Persistence.isAvailable())
+    {
         log("Persistence not available: multiple choices will not work.");
         return;
-    }
-
-    if (choices.length < buttons.length) {
+    } 
+    else if (choices.length < buttons.length)
+    {
         log("Not enough choices: You wanted to generate " + buttons.length + " choices yet the field contains " + choices.length + " choices.");
         return;
     }
 
     // Populate one button with the correct answer. It is assumed that the correct choice is listed first
-    let correctButtonIndex = getRandomInt(0, buttons.length- 1);
+    let correctButtonIndex = randomInt(0, buttons.length- 1);
     buttons[correctButtonIndex].innerHTML = getChoice(0);
-    setCorrectButtonIndex(correctButtonIndex);
+    Persistence.setItem("correctButton", correctButtonIndex);
 
     // Add event listeners to choice buttons and populate them
     for (let i = 0; i < buttons.length; i++) {
         let button = buttons[i];
-        if (isWindows)
-            button.addEventListener("click", flipCard);
-        else if (isMobile)
+        
+        if (isMobile){
             button.addEventListener("touchstart", flipCard);
+        } 
+        else if (isDesktop) {
+            button.addEventListener("click", flipCard);
+        }
 
         if (i !== correctButtonIndex)
-            button.innerHTML = getChoice(getRandomInt(0, choices.length - 1));
-
+            button.innerHTML = getChoice(randomInt(0, choices.length - 1));
+        
+        // Set a custom index attribute in order to be able to persist the button inside event listeners
         button.setAttribute("Index", i);
-        persistButton(button);
+        Persistence.setItem(button.getAttribute("Index"), button.innerHTML);
     }
 
     function getChoice(index) { return choices.splice(index, 1)[0]; }
-
-
-
+    function flipCard() {
+        Persistence.setItem("choosenButton", this.getAttribute("Index"));
+        if (typeof pycmd !== "undefined")
+            pycmd("ans");
+        else if (typeof AnkiDroidJS !== "undefined")
+            showAnswer();
+    }
 }
-
 init();
 
 
 // UTILITY FUNCTIONS
 function log(text) { if (Debug !== null && Debug != undefined) Debug.innerHTML += text + "<br>";}
 
-function getRandomInt(start, end) {
+function randomInt(start, end) {
     /* Start and end inex are included */
     let result = 0;
     if (end >= start)
@@ -65,24 +74,3 @@ function parseChoices() {
     let choices = "{{Choices}}".split("<br>");
     return choices;
 }
-
-function setChoosenButtonIndex(index) {
-    Persistence.setItem("choosenButton", index);
-}
-
-function setCorrectButtonIndex(index) {
-    Persistence.setItem("correctButton", index);
-}
-
-function persistButton(button) {
-    Persistence.setItem(button.getAttribute("Index"), button.innerHTML);
-}
-
-function flipCard() {
-    setChoosenButtonIndex(this.getAttribute("Index"));
-    if (typeof pycmd !== "undefined")
-        pycmd("ans");
-    else if (typeof AnkiDroidJS !== "undefined")
-        showAnswer();
-}
-
