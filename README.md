@@ -45,4 +45,9 @@ Both front.html and back.html include the line: `<p id="multiple-choice-debug"><
 In case something goes wrong, a specific error message will be displayed in there.
 You can delete it if you want, though I would advise keeping it, as it will always be invisible unless an error occurs.
 
+## Contributing
+If you feel like the available templates are missing some features, feel free to improve on them or share your own template by making a pull request.
+
+Otherwise, if you have created a beautiful note type using this library, you may share it here so that others can use it as well.
+
 
