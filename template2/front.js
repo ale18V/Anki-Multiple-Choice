@@ -75,6 +75,5 @@ function randomInt(start, end) {
 }
 
 function parseChoices() {
-    let choices = "{{Choices}}".split("<br>");
-    return choices;
+    return document.getElementById('multiple-choice-choices').innerHTML.split('<br>');
 }
