@@ -1,0 +1,57 @@
+.multiple-choice-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 15px;
+	column-gap: 10px;
+	margin-top: 10px;
+}
+
+.multiple-choice-button {
+	background-color: gray;
+	padding: 2px;
+	border-radius: 15px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+	cursor: pointer;
+	visibility: visible;
+	transition: transfrom .3s;
+}
+
+/* Style applied to the clicked button if it contains the wrong answer */
+.multiple-choice-wrong {
+	background-color: red;
+}
+
+/* Style applied to the button containing the correct answer */
+.multiple-choice-correct {
+	background: green;
+}
+
+/* Style applied to any clicked button in the front side */
+.multiple-choice-selected {
+	border: 2px solid blue;
+}
+
+/* Keep this as is: HTML buttons are styled by anki and anki's browser engine so they can't be reliably used */
+.multiple-choice-hidden {
+	/* Override anki default style */
+	all: unset !important;
+
+	/* Only for Anki Mobile */
+	-webkit-tap-highlight-color: transparent !important;
+
+	/* Hide it */
+	visibility: hidden !important;
+
+}
+
+/* Additional CSS for animating buttons */
+/* You can remove this */
+.multiple-choice-button:not(.mobile .multiple-choice-button):hover {
+	transform: scale(1.02);
+}
+
+.multiple-choice-button:not(.mobile .multiple-choice-button):active {
+	transform: scale(0.99);
+}

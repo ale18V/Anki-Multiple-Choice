@@ -3,14 +3,13 @@
 if (void 0 === window.Persistence) { var e = "github.com/SimonLammer/anki-persistence/", t = "_default"; if (window.Persistence_sessionStorage = function () { var i = !1; try { "object" == typeof window.sessionStorage && (i = !0, this.clear = function () { for (var t = 0; t < sessionStorage.length; t++) { var i = sessionStorage.key(t); 0 == i.indexOf(e) && (sessionStorage.removeItem(i), t--) } }, this.setItem = function (i, n) { void 0 == n && (n = i, i = t), sessionStorage.setItem(e + i, JSON.stringify(n)) }, this.getItem = function (i) { return void 0 == i && (i = t), JSON.parse(sessionStorage.getItem(e + i)) }, this.removeItem = function (i) { void 0 == i && (i = t), sessionStorage.removeItem(e + i) }, this.getAllKeys = function () { for (var t = [], i = Object.keys(sessionStorage), n = 0; n < i.length; n++) { var s = i[n]; 0 == s.indexOf(e) && t.push(s.substring(e.length, s.length)) } return t.sort() }) } catch (n) { } this.isAvailable = function () { return i } }, window.Persistence_windowKey = function (i) { var n = window[i], s = !1; "object" == typeof n && (s = !0, this.clear = function () { n[e] = {} }, this.setItem = function (i, s) { void 0 == s && (s = i, i = t), n[e][i] = s }, this.getItem = function (i) { return void 0 == i && (i = t), void 0 == n[e][i] ? null : n[e][i] }, this.removeItem = function (i) { void 0 == i && (i = t), delete n[e][i] }, this.getAllKeys = function () { return Object.keys(n[e]) }, void 0 == n[e] && this.clear()), this.isAvailable = function () { return s } }, window.Persistence = new Persistence_sessionStorage, Persistence.isAvailable() || (window.Persistence = new Persistence_windowKey("py")), !Persistence.isAvailable()) { var i = window.location.toString().indexOf("title"), n = window.location.toString().indexOf("main", i); i > 0 && n > 0 && n - i < 10 && (window.Persistence = new Persistence_windowKey("qt")) } }
 
 
-var isMobile = (document.getElementsByClassName("mobile").length !== 0);
+var isMobile = (document.getElementsByClassName('mobile').length !== 0);
 var isDesktop = !isMobile;
 var Debug = document.getElementById("multiple-choice-debug");
 
-function init() {
+function init(btnEventListener) {
     let choices = parseChoices();
-    let buttons = document.getElementsByClassName("multiple-choice-button");
-    let currentlySelectedButton = null;
+    let buttons = document.getElementsByClassName("multiple-choice-button")
     
     // Check for possible errors
     if (!Persistence.isAvailable())
@@ -24,20 +23,20 @@ function init() {
         return;
     }
 
-    // Populate one button with the correct answer. It is assumed that the correct choice is the first element of the array
-    let correctButtonIndex = randomInt(0, buttons.length - 1);
+    // Populate one button with the correct answer. It is assumed that the correct choice is listed first
+    let correctButtonIndex = randomInt(0, buttons.length- 1);
     buttons[correctButtonIndex].innerHTML = getChoice(0);
     Persistence.setItem("correctButton", correctButtonIndex);
-    
+
     // Add event listeners to choice buttons and populate them
     for (let i = 0; i < buttons.length; i++) {
         let button = buttons[i];
-
+        
         if (isMobile){
-            button.addEventListener("touchstart", selectButton);
+            button.addEventListener("touchstart", btnEventListener);
         } 
         else if (isDesktop) {
-            button.addEventListener("click", selectButton);
+            button.addEventListener("click", btnEventListener);
         }
 
         if (i !== correctButtonIndex)
@@ -49,22 +48,11 @@ function init() {
     }
 
     function getChoice(index) { return choices.splice(index, 1)[0]; }
-    function selectButton() {
-        Persistence.setItem("choosenButton", this.getAttribute("Index"));
-        if (currentlySelectedButton !== null)
-            currentlySelectedButton.classList.remove("multiple-choice-selected");
-
-        currentlySelectedButton = this;
-        currentlySelectedButton.classList.add("multiple-choice-selected");
-    }
 
 }
 
-init();
-
-
 // UTILITY FUNCTIONS
-function log(text) { if (Debug !== undefined && Debug != null) Debug.innerHTML += text + "<br>"; }
+function log(text) { if (Debug !== null && Debug != undefined) Debug.innerHTML += text + "<br>";}
 
 function randomInt(start, end) {
     /* Start and end inex are included */
@@ -77,3 +65,12 @@ function randomInt(start, end) {
 function parseChoices() {
     return document.getElementById('multiple-choice-choices').innerHTML.split('<br>');
 }
+function selectButton() {
+    Persistence.setItem("choosenButton", this.getAttribute("Index"));
+    for(let currentlySelected of document.getElementsByClassName("multiple-choice-selected")){
+        currentlySelected.classList.remove("multiple-choice-selected");
+    }
+    this.classList.add("multiple-choice-selected");
+}
+
+init(selectButton);

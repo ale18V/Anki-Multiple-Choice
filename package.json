@@ -1,0 +1,21 @@
+{
+  "name": "anki-multiple-choice",
+  "version": "1.0.0",
+  "description": "An html, js and css library for implementing multiple choices on anki",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ale18V/Anki-Multiple-Choice.git"
+  },
+  "author": "ale18V",
+  "bugs": {
+    "url": "https://github.com/ale18V/Anki-Multiple-Choice/issues"
+  },
+  "homepage": "https://github.com/ale18V/Anki-Multiple-Choice#readme",
+  "dependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-minify": "^3.1.0",
+    "merge-stream": "^2.0.0"
+  }
+}

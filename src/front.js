@@ -7,7 +7,7 @@ var isMobile = (document.getElementsByClassName('mobile').length !== 0);
 var isDesktop = !isMobile;
 var Debug = document.getElementById("multiple-choice-debug");
 
-function init() {
+function init(btnEventListener) {
     let choices = parseChoices();
     let buttons = document.getElementsByClassName("multiple-choice-button")
     
@@ -33,10 +33,10 @@ function init() {
         let button = buttons[i];
         
         if (isMobile){
-            button.addEventListener("touchstart", flipCard);
+            button.addEventListener("touchstart", btnEventListener);
         } 
         else if (isDesktop) {
-            button.addEventListener("click", flipCard);
+            button.addEventListener("click", btnEventListener);
         }
 
         if (i !== correctButtonIndex)
@@ -48,16 +48,8 @@ function init() {
     }
 
     function getChoice(index) { return choices.splice(index, 1)[0]; }
-    function flipCard() {
-        Persistence.setItem("choosenButton", this.getAttribute("Index"));
-        if (typeof pycmd !== "undefined")
-            pycmd("ans");
-        else if (typeof AnkiDroidJS !== "undefined")
-            showAnswer();
-    }
-}
-init();
 
+}
 
 // UTILITY FUNCTIONS
 function log(text) { if (Debug !== null && Debug != undefined) Debug.innerHTML += text + "<br>";}
