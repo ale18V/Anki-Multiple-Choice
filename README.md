@@ -6,8 +6,11 @@ It randomizes the choices every time you review your card in order to prevent yo
 
 ## How to use
 ### Setup the note type
-First choose the template you want to use.
-You can find more about the difference between the two templates in the templates paragraph.
+First choose the template you want to use.<br>
+You can find more about the difference between the two templates in the templates paragraph.<br>
+**Note**: In the following steps you'll have to copy the content of the files inside the `dist` folder and **not** the `src` folder.
+The content inside `src` is intended for developement only.
+
 Once you have choosen a template you'll have to do the following:
 1. Choose a note type which you want to turn into multiple choice (e.g. "Basic" note type) and add a field named "Choices" to the note type (without the quotes).
 This is the field that will contain the multiple choices.
