@@ -60,5 +60,7 @@ function randomInt(start, end) {
 }
 
 function parseChoices() {
-    return document.getElementById('multiple-choice-choices').innerHTML.split('<br>').map(el => el.trim()).filter(el => el);
+    // It is important that the {{Choices}} field is in a textarea
+    // This allows html decoding and allows trimming stuff like &nbsp;
+    return document.getElementById('multiple-choice-choices').value.split('<br>').map(el => el.trim()).filter(el => el);
 }
