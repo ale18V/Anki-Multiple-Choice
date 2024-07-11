@@ -5,7 +5,11 @@ This project is a mix of html, css and javascript that you can add to whichever 
 It randomizes the choices every time you review your card in order to prevent you from memorizing the position of the correct choice.
 
 ## How to use
-### Setup the note type
+### Fast setup
+You can just download the anki package `example.apkg` inside the dist folder and import into anki, and the note types will be imported into your collection.<br>
+However, if you already have a note type which you want to turn into multiple choice, you might want to keep reading the manual setup.
+
+### Manual setup
 First choose the template you want to use.<br>
 You can find more about the difference between the two templates in the templates paragraph.<br>
 **Note**: In the following steps you'll have to copy the content of the files inside the `dist` folder and **not** the `src` folder.
