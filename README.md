@@ -6,7 +6,7 @@ It randomizes the choices every time you review your card in order to prevent yo
 
 ## How to use
 ### Fast setup
-You can just download the anki package `example.apkg` inside the dist folder and import into anki, and the note types will be imported into your collection.<br>
+You can just download the anki package `example.apkg` and import into anki, and the note types will be imported into your collection.<br>
 However, if you already have a note type which you want to turn into multiple choice, you might want to keep reading the manual setup.
 
 ### Manual setup
